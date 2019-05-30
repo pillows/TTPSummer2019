@@ -1,0 +1,9 @@
+#largeBox {
+    height:600px;
+    width:600px;
+    background-color: coral;
+}
+
+#volume_message {
+     display:none
+}

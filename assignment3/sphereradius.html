@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+
+</head>
+<body>
+
+    <form onsubmit="return false">
+        <label>Radius</label><input type="text"  id="radius"/>
+        <br  />
+
+        <input type="submit" id="submit"/>
+        <div id="volume_message">The volume of the sphere is: <span id="result"></span></div>
+    </form>
+
+    <script type="text/javascript">
+        document.getElementById("submit").addEventListener("click", function(){
+            let radius = document.getElementById("radius").value
+            let volume = (4/3)*Math.PI*Math.pow(Number(radius), 2);
+            document.getElementById("message").style.display = "block"
+            document.getElementById("result").innerHTML = volume;
+            return false;
+        });
+    </script>
+</body>
+</html>
