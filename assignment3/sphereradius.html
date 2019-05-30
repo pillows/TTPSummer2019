@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-
+    <link href="style.css" rel="stylesheet"  />
 </head>
 <body>
 
@@ -17,7 +17,7 @@
         document.getElementById("submit").addEventListener("click", function(){
             let radius = document.getElementById("radius").value
             let volume = (4/3)*Math.PI*Math.pow(Number(radius), 2);
-            document.getElementById("message").style.display = "block"
+            document.getElementById("volume_message").style.display = "block"
             document.getElementById("result").innerHTML = volume;
             return false;
         });
