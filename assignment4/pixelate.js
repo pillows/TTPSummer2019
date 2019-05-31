@@ -1,6 +1,7 @@
 var current_rows = 0;
 var current_cols = 16;
 var number_of_squares = 16;
+// var color = "gray";
 var table = document.getElementById("table");
 
 
@@ -39,7 +40,23 @@ document.getElementById("sub-col").addEventListener("click", function(){
 
 })
 
-document.getElementById("find_all").addEventListener("click", function(){
+document.getElementById("fill_all").addEventListener("click", function(){
+    let select = document.getElementsByTagName("select")[0];
+    let color = select.options[select.selectedIndex].value;
+
+    let cells = table.getElementsByTagName("td");
+
+    for(let i = 0; i < cells.length; i++){
+        cells[i].style.backgroundColor = color;
+    }
+
+
+    // for(let i = 0; i < current_rows; i++){
+    //     for(let j = 0; j < current_cols; j++){
+    //         let col_color = table.rows[i].
+    //         rows[i].
+    //     }
+    // }
 
 })
 
