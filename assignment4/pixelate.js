@@ -61,9 +61,22 @@ document.getElementById("fill_all").addEventListener("click", function(){
 })
 
 document.getElementById("fill_empty").addEventListener("click", function(){
+    let select = document.getElementsByTagName("select")[0];
+    let color = select.options[select.selectedIndex].value;
 
+    let cells = table.getElementsByTagName("td");
+
+    for(let i = 0; i < cells.length; i++){
+
+        cells[i].style.backgroundColor = color;
+    }
 })
 
 document.getElementById("clear").addEventListener("click", function(){
+    let cells = table.getElementsByTagName("td");
 
+    for(let i = 0; i < cells.length; i++){
+
+        cells[i].style.backgroundColor = "gray";
+    }
 })
