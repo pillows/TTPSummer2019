@@ -7,14 +7,23 @@
         color:White;
         background-color:black;
     }
-    table {
+    #table_container{
         margin-top:100px;
+    }
+    table {
         margin:auto;
+        /*
+        Taken from https://stackoverflow.com/a/5667535
+        */
+        border-collapse: separate;
+        border-spacing: 10px 5px;
+
+        margin-bottom:100px;
     }
     td{
         width:50px;
         height:50px;
-        margin:10px 10px 10px 10px;
+        margin:30px 30px 30px 30px;
         background-color:gray;
         text-align:center;
     }
@@ -47,14 +56,16 @@
     </div>
 </div>
 
+<div id="table_container">
+    <table id="table">
+    </table>
 
-<table id="table">
-    <tr>
-        <td>
-            sdsd
-        </td>
-    </tr>
-</table>
+    <button id="find_all">Find all cells</button>
+    <button id="fill_empty">Fill empty cells</button>
+    <button id="clear">Clear</button>
+</div>
+
+<script src="pixelate.js" type="text/javascript"></script>
 
 </body>
 </html>
