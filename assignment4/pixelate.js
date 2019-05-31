@@ -1,12 +1,12 @@
 var current_rows = 0;
-var current_cols = 0;
+var current_cols = 16;
 var number_of_squares = 16;
 var table = document.getElementById("table");
 
 
 document.getElementById("add-row").addEventListener("click", function(){
     let row = table.insertRow(current_rows)
-    for(let i = 0; i < number_of_squares; i++){
+    for(let i = 0; i < current_cols; i++){
         let cell = row.insertCell(i)
     }
     current_rows++;
@@ -19,13 +19,24 @@ document.getElementById("sub-row").addEventListener("click", function(){
 })
 
 document.getElementById("add-col").addEventListener("click", function(){
-    console.log(table.rows)
-    // current_cols++;
+    let rows = table.rows;
+    current_cols++;
+    for(let i = 0; i < rows.length; i++){
+        rows[i].insertCell(0)
+    }
+
+    // console.log(table.rows)
+
 })
 
 document.getElementById("sub-col").addEventListener("click", function(){
+    let rows = table.rows;
     if(current_rows > 0)
         current_cols--;
+    for(let i = 0; i < rows.length; i++){
+        rows[i].deleteCell(0)
+    }
+
 })
 
 document.getElementById("find_all").addEventListener("click", function(){
