@@ -1,15 +1,24 @@
 var current_rows = 0;
 var current_cols = 16;
 var number_of_squares = 16;
-// var color = "gray";
+
 var table = document.getElementById("table");
 
 
 document.getElementById("add-row").addEventListener("click", function(){
+    let default_color = "gray";
+    let rows = table.rows;
     let row = table.insertRow(current_rows)
     for(let i = 0; i < current_cols; i++){
         let cell = row.insertCell(i)
+
     }
+
+    for(let j = 0; j < rows[current_rows].cells.length; j++){
+        rows[current_rows].cells[j].style.backgroundColor = default_color;
+    }
+
+
     current_rows++;
 })
 
@@ -67,7 +76,7 @@ document.getElementById("fill_empty").addEventListener("click", function(){
     let cells = table.getElementsByTagName("td");
 
     for(let i = 0; i < cells.length; i++){
-
+        // let cell_color =
         cells[i].style.backgroundColor = color;
     }
 })
