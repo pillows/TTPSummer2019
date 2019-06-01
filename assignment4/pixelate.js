@@ -1,8 +1,77 @@
 var current_rows = 0;
 var current_cols = 16;
 var number_of_squares = 16;
-
+var hovering = false;
 var table = document.getElementById("table");
+var holding = false;
+const default_color = "gray";
+
+document.addEventListener("DOMContentLoaded", function(event) {
+
+});
+
+let tableDown = (e) => {
+    holding = true;
+    console.log(e)
+}
+
+let tableUp = (e) => {
+    holding = false;
+    console.log("off")
+}
+
+let tableOver = (e) => {
+    let select = document.getElementsByTagName("select")[0];
+    let color = select.options[select.selectedIndex].value;
+    let cells = document.getElementsByTagName("td");
+    for (let i = 0; i < cells.length; i++) {
+        console.log(holding)
+        if(holding === true){
+
+            cells[i].onmouseover = function() {
+                console.log(i);
+                this.style.backgroundColor = color;
+            };
+
+            cells[i].onmouseup = function() {
+                holding = false;
+            };
+        }
+    }
+}
+
+table.onmousedown = tableDown;
+table.onmouseup = tableUp;
+table.onmouseover = tableOver;
+
+
+
+table.addEventListener("mousedown",function(){
+    //
+    //
+    //
+    // holding = true;
+    // let cells = document.getElementsByTagName("td");
+    // for (var i = 0; i < cells.length; i++) {
+    //     if(holding === true){
+    //         cells[i].onmouseover = function() {
+    //             console.log('hovered');
+    //         };
+    //     }
+    //     else{
+    //         return;
+    //     }
+    // }
+    // return;
+})
+
+table.addEventListener("mouseup",function(){
+    // holding = false;
+    // console.log("mouseup")
+})
+
+table.addEventListener("mouseover",function(){
+})
 
 
 document.getElementById("add-row").addEventListener("click", function(){
@@ -77,7 +146,8 @@ document.getElementById("fill_empty").addEventListener("click", function(){
 
     for(let i = 0; i < cells.length; i++){
         // let cell_color =
-        cells[i].style.backgroundColor = color;
+        if(cells[i].style.backgroundColor === default_color)
+            cells[i].style.backgroundColor = color;
     }
 })
 
@@ -89,3 +159,13 @@ document.getElementById("clear").addEventListener("click", function(){
         cells[i].style.backgroundColor = "gray";
     }
 })
+
+// document.getElementById("table").addEventListener("mouseover", function(e){
+//     if(e.buttons == 1 || e.buttons == 3){
+//         console.log(e.buttons)
+//     }
+// })
+//
+// document.getElementById("table").addEventListener("mouseup", function(){
+//
+// })
