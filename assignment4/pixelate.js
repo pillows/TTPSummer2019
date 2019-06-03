@@ -83,11 +83,12 @@ document.getElementById("add-col").addEventListener("click", function(){
     let rows = table.rows;
     current_cols++;
     for(let i = 0; i < rows.length; i++){
-        
-        // for(let j = 0; rows[i].cells.length; j++){
-        //     rows[i].cells[j].style.backgroundColor = default_color;
-        // }
+
+
         rows[i].insertCell(0)
+        for(let j = 0; j < rows[i].cells.length; j++){
+            rows[i].cells[j].style.backgroundColor = default_color;
+        }
     }
 
     // console.log(table.rows)
