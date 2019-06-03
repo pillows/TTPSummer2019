@@ -6,7 +6,7 @@ var table = document.getElementById("table");
 var holding = false;
 const default_color = "gray";
 
-let selected_color = () = > {
+let selected_color = () => {
     let select = document.getElementsByTagName("select")[0];
     let color = select.options[select.selectedIndex].value;
     return color
@@ -83,6 +83,10 @@ document.getElementById("add-col").addEventListener("click", function(){
     let rows = table.rows;
     current_cols++;
     for(let i = 0; i < rows.length; i++){
+        
+        // for(let j = 0; rows[i].cells.length; j++){
+        //     rows[i].cells[j].style.backgroundColor = default_color;
+        // }
         rows[i].insertCell(0)
     }
 
@@ -93,18 +97,20 @@ document.getElementById("add-col").addEventListener("click", function(){
 document.getElementById("sub-col").addEventListener("click", function(){
     let rows = table.rows;
     // We need to decrement our variable to keep track of how many columns
-    // there still are, this is to mak
+    // there still are, this is to make sure we have a correct number of
+    // columns where there are rows
     if(current_rows > 0)
         current_cols--;
     for(let i = 0; i < rows.length; i++){
+        // Deleting the first cell vs last cell makes no difference
+        // But deleting the first one is easier on the eyes and logic
         rows[i].deleteCell(0)
     }
 
 })
 
 document.getElementById("fill_all").addEventListener("click", function(){
-    let select = document.getElementsByTagName("select")[0];
-    let color = select.options[select.selectedIndex].value;
+    let color = selected_color();
 
     let cells = table.getElementsByTagName("td");
 
