@@ -6,23 +6,34 @@ var table = document.getElementById("table");
 var holding = false;
 const default_color = "gray";
 
+let selected_color = () = > {
+    let select = document.getElementsByTagName("select")[0];
+    let color = select.options[select.selectedIndex].value;
+    return color
+}
 document.addEventListener("DOMContentLoaded", function(event) {
 
 });
 
+//  Testing functions for clicking and hovering
 let tableDown = (e) => {
+
+    // if the user holds the mouse down then holding will be set to true
     holding = true;
     console.log(e)
 }
 
 let tableUp = (e) => {
+
+    // when the user releases the mouse then holding is set to false
     holding = false;
     console.log("off")
 }
 
+// tableOver will highlight the hovered cells and make them the selected color
 let tableOver = (e) => {
-    let select = document.getElementsByTagName("select")[0];
-    let color = select.options[select.selectedIndex].value;
+
+    let color = selected_color();
     let cells = document.getElementsByTagName("td");
     for (let i = 0; i < cells.length; i++) {
         console.log(holding)
@@ -43,35 +54,6 @@ let tableOver = (e) => {
 table.onmousedown = tableDown;
 table.onmouseup = tableUp;
 table.onmouseover = tableOver;
-
-
-
-table.addEventListener("mousedown",function(){
-    //
-    //
-    //
-    // holding = true;
-    // let cells = document.getElementsByTagName("td");
-    // for (var i = 0; i < cells.length; i++) {
-    //     if(holding === true){
-    //         cells[i].onmouseover = function() {
-    //             console.log('hovered');
-    //         };
-    //     }
-    //     else{
-    //         return;
-    //     }
-    // }
-    // return;
-})
-
-table.addEventListener("mouseup",function(){
-    // holding = false;
-    // console.log("mouseup")
-})
-
-table.addEventListener("mouseover",function(){
-})
 
 
 document.getElementById("add-row").addEventListener("click", function(){
@@ -110,6 +92,8 @@ document.getElementById("add-col").addEventListener("click", function(){
 
 document.getElementById("sub-col").addEventListener("click", function(){
     let rows = table.rows;
+    // We need to decrement our variable to keep track of how many columns
+    // there still are, this is to mak
     if(current_rows > 0)
         current_cols--;
     for(let i = 0; i < rows.length; i++){
@@ -124,28 +108,23 @@ document.getElementById("fill_all").addEventListener("click", function(){
 
     let cells = table.getElementsByTagName("td");
 
+    // All the cells will be looped through and have their inline css
+    // backgroundColor to be the selected color
     for(let i = 0; i < cells.length; i++){
         cells[i].style.backgroundColor = color;
     }
 
 
-    // for(let i = 0; i < current_rows; i++){
-    //     for(let j = 0; j < current_cols; j++){
-    //         let col_color = table.rows[i].
-    //         rows[i].
-    //     }
-    // }
-
 })
 
 document.getElementById("fill_empty").addEventListener("click", function(){
-    let select = document.getElementsByTagName("select")[0];
-    let color = select.options[select.selectedIndex].value;
+    let color = selected_color();
 
     let cells = table.getElementsByTagName("td");
 
+    // The cells that are the color of the default color will be set
+    // to the color that is currently selected
     for(let i = 0; i < cells.length; i++){
-        // let cell_color =
         if(cells[i].style.backgroundColor === default_color)
             cells[i].style.backgroundColor = color;
     }
@@ -155,17 +134,7 @@ document.getElementById("clear").addEventListener("click", function(){
     let cells = table.getElementsByTagName("td");
 
     for(let i = 0; i < cells.length; i++){
-
-        cells[i].style.backgroundColor = "gray";
+        // Resetting all the cells to the global default_color variable
+        cells[i].style.backgroundColor = default_color;
     }
 })
-
-// document.getElementById("table").addEventListener("mouseover", function(e){
-//     if(e.buttons == 1 || e.buttons == 3){
-//         console.log(e.buttons)
-//     }
-// })
-//
-// document.getElementById("table").addEventListener("mouseup", function(){
-//
-// })
