@@ -6,13 +6,19 @@ class Decrement extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            number:5
+            number:this.props.number
         };
         this.decrementer = this.decrementer.bind(this)
     };
 
     decrementer(e){
+        let decrement = this.state.number - 1;
 
+        if(decrement < 0)
+            alert("Cannot be less than zero")
+        else {
+            this.setState({number:decrement})
+        }
     }
 
     render(){
