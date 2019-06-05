@@ -11,18 +11,6 @@ class UserProfile extends Component {
         }
     }
 
-    getCredits(){
-        console.log("credits")
-    }
-
-    getDebits(){
-        console.log("debitss")
-    }
-
-    componentWillMount(){
-        this.getCredits();
-        this.getDebits();
-    }
 
   render() {
     return (
