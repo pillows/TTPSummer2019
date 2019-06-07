@@ -7,7 +7,9 @@ class Home extends Component {
     constructor(props){
         super(props);
         this.state = {
-            accountBalance: this.props.accountBalance
+            accountBalance: this.props.accountBalance,
+            creditTransactions:[],
+            debitTransactions:[]
         }
 
     }
@@ -22,6 +24,8 @@ class Home extends Component {
               .then(function(myJson) {
                   // console.log(myJson)
                   let creditTotal = 0;
+                  console.log("stuff",myJson)
+                  that.setState({creditTransactions:myJson})
                   for(let i = 0; i < myJson.length; i++){
                       creditTotal += (myJson[i].amount * -1)
                   }
@@ -41,7 +45,8 @@ class Home extends Component {
               })
               // When the real data is sent and readable
               .then(function(myJson) {
-                  console.log("debits begin balance",that.state.accountBalance)
+                  that.setState({debitTransactions:myJson})
+                  console.log("stuff",myJson)
                   let debitTotal = 0;
                   for(let i = 0; i < myJson.length; i++){
                       debitTotal += (myJson[i].amount)
@@ -57,6 +62,7 @@ class Home extends Component {
 
         componentWillMount(){
             this.getCredits(this);
+            this.setState({balance2:this.state.accountBalance})
 
         }
   render() {
@@ -65,7 +71,7 @@ class Home extends Component {
           <img src="https://letstalkpayments.com/wp-content/uploads/2016/04/Bank.png" alt="bank"/>
           <h1>Bank of React</h1>
 
-          <Link to="/userProfile">User Profile</Link> | <Link to="/credits">Credit Transactions</Link> | <Link to="/debits">Debit Transactions</Link>
+          <Link to="/userProfile">User Profile</Link> | <Link to={{pathname:'/credits',state:{creditTransactions:this.state.creditTransactions}}}>Credit Transactions</Link> | <Link to={{pathname:'/debits',state:{debitTransactions:this.state.debitTransactions}}}>Debit Transactions</Link>
 
           <AccountBalance accountBalance={this.state.accountBalance}/>
 

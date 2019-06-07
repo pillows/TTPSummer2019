@@ -1,12 +1,16 @@
+
+
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
 class DebitList extends Component {
     constructor(props){
         super(props);
-        console.log(this.props.accountBalance)
+        console.log("cool", props)
+        // console.log(this.props.accountBalance)
         this.state = {
-            accountBalance:this.props.accountBalance
+            accountBalance:this.props.accountBalance,
+            // debitTransactions:this.props.
         }
     }
 
